@@ -2,7 +2,7 @@
 
 A hackable, extendable, utterly-simply, terminal emulator for your browser. 
 
-![demo](http://i1158.photobucket.com/albums/p618/g12mcgov/demo.gif)
+![demo](http://i1158.photobucket.com/albums/p618/g12mcgov/demo1.gif)
 
 (It doesnt need jQuery either!)
 
