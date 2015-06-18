@@ -1,0 +1,21 @@
+#terminal {
+	width: 600px;
+	height: 400px;
+	background-color: black;
+	margin: 0 auto;
+	font-size: 1em;
+	font-family: 'Lucida Console', Monaco, monospace;
+}
+
+#terminal span {
+	color: #00FF00;
+}
+
+#terminal input {
+	background-color: black;
+	border: none;
+	outline-width: 0;
+	color: #00FF00;
+	font-size: 1em;
+	font-family: 'Lucida Console', Monaco, monospace;
+}
