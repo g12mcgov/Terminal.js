@@ -1,6 +1,6 @@
 # Terminal.js
 
-A hackable, extendable, utterly-simply, terminal emulator for your browser. 
+A hackable, extendable, utterly-simply, terminal emulator for your browser. Here's a preview of it running locally, in Chrome:
 
 ![demo](http://i1158.photobucket.com/albums/p618/g12mcgov/demo1.gif)
 
