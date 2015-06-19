@@ -27,7 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			displayText('/github<br>');
 		},
 		ll: function() {
-
+			displayText('.<br>');
+			displayText('..<br>');
+			displayText('.bash_profile<br>');
+			displayText('.bash_history<br>');
+			displayText('<span style="color:blue;">about</span><br>');
+			displayText('<span style="color:blue;">home</span><br>');
+			displayText('<span style="color:yellow;">github</span></br>');
 		}, 
 		cd: function(directory) {
 			switch (directory[0]) {
@@ -37,8 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				case '/github':
 					window.location.href = 'http://github.com/g12mcgov';
 					break;
-				}
-			}	
+			}
+		},
+		mailx: function(body) {
+			window.location.href = 'mailto:grantmcgovern.mcgovern@gmail.com?body=' + body;
+		},
+		help: function() {
+			displayText('[ls]  [ll]');
+		}	
 	};
 
 	var input;
