@@ -34,7 +34,7 @@ Using
 Then, add the following `div`:
 
 ```html
-<div id="terminal">
+<div id="terminal"></div>
 ```
 
 How-To
@@ -60,22 +60,43 @@ var commands = {
 			displayText('/github<br>');
 		},
 		ll: function() {
-			displayText('/about<br>');
-			displayText('/home<br>');
-			displayText('/github<br>');
+			displayText('.<br>');
+			displayText('..<br>');
 			displayText('.bash_profile<br>');
+			displayText('.bash_history<br>');
+			displayText('<span style="color:blue;">about</span><br>');
+			displayText('<span style="color:blue;">home</span><br>');
+			displayText('<span style="color:yellow;">github</span><br>');
 		}, 
 		cd: function(directory) {
-			switch (directory[0]) {
-				case '/about':
-					window.location.href = '/about';
-					break;
-				case '/github':
-					window.location.href = 'http://github.com/g12mcgov';
-					break;
+			// Check if it was called with no args 
+			directory = (typeof directory !== 'undefined') ? directory : null;
+
+			if(!directory) {
+				displayText("-bash: cd takes [1] argument <br>");
+			}
+			else {
+				switch (directory[0]) {
+					case '/about':
+						window.location.href = '/about';
+						break;
+					case '/github':
+						window.location.href = 'http://github.com/g12mcgov';
+						break;
+					default:
+						window.location.href = '/';
+						break;
 				}
-			}	
-	};
+			}
+		},
+		mailx: function(body) {
+			window.location.href = 'mailto:grantmcgovern.mcgovern@gmail.com?body=' + body;
+		},
+		help: function() {
+			displayText('Available commands:<br>');
+			displayText('ls -- list directory contents ( [ls] [file ...])<br>');
+			displayText('cd -- change directory ( [cd] [directory ...])<br>');
+		},
 	...
 ```
 

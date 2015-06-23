@@ -12,11 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Grab the main terminal div
 	var terminal = document.getElementById('terminal');
 
-	// Stack to hold commands
-	var stack = [];
+	// Cache to hold commands
+	var cache = [];
 
 	// Root text 
 	var root = 'grantmcgovern@gMAC-2:~/<span style="color:#FF00FF;">Developer</span> $ ';
+
+	// Input form 
+	var input;
 
 	// List of commands and their actions
 	// ~ Stored in `command` => `action` (key/val) format
@@ -33,27 +36,43 @@ document.addEventListener('DOMContentLoaded', function() {
 			displayText('.bash_history<br>');
 			displayText('<span style="color:blue;">about</span><br>');
 			displayText('<span style="color:blue;">home</span><br>');
-			displayText('<span style="color:yellow;">github</span></br>');
+			displayText('<span style="color:yellow;">github</span><br>');
 		}, 
 		cd: function(directory) {
-			switch (directory[0]) {
-				case '/about':
-					window.location.href = '/about';
-					break;
-				case '/github':
-					window.location.href = 'http://github.com/g12mcgov';
-					break;
+			// Check if it was called with no args 
+			directory = (typeof directory !== 'undefined') ? directory : null;
+
+			if(!directory) {
+				displayText("-bash: cd takes [1] argument <br>");
+			}
+			else {
+				switch (directory[0]) {
+					case '/about':
+						window.location.href = '/about';
+						break;
+					case '/github':
+						window.location.href = 'http://github.com/g12mcgov';
+						break;
+					default:
+						window.location.href = '/';
+						break;
+				}
 			}
 		},
 		mailx: function(body) {
 			window.location.href = 'mailto:grantmcgovern.mcgovern@gmail.com?body=' + body;
 		},
 		help: function() {
-			displayText('[ls]  [ll]');
+			displayText('Available commands:<br>');
+			displayText('ls -- list directory contents ( [ls] [file ...])<br>');
+			displayText('cd -- change directory ( [cd] [directory ...])<br>');
+		},
+		h: function() {
+			displayText('Available commands:<br>');
+			displayText('ls -- list directory contents ( [ls] [file ...])<br>');
+			displayText('cd -- change directory ( [cd] [directory ...])<br>');
 		}	
 	};
-
-	var input;
 
 	// Add root text 
 	addRootText();
@@ -62,19 +81,27 @@ document.addEventListener('DOMContentLoaded', function() {
 	addInputForm();
 
 	// Move cursor to input prompt
-	input.focus();
-	input.select();
+	activateCursor();
 
 	// Listen for enter key press
 	document.onkeypress = function(event) {
 		if(event.keyCode == 13) {
-  			stack.push(input.value);
+  			cache.push(input.value);
   			handleCommand(input.value);
   			addRootText();
   			addInputForm();
   			activateCursor();
 		}
 	};
+
+	// Listen for up-arrow key press
+	document.onkeydown = function(event) {
+		if(event.keyCode == 38) {
+			var last_command = cache[0];
+			console.log(last_command);
+			//console.log(cache);
+		}
+	}
 
 	function handleCommand(command) {
 		cleanTerminal();
