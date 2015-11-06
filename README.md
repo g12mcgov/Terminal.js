@@ -24,6 +24,7 @@ Using
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Terminal.css -->
 	<link rel="stylesheet" href="terminal.css">
 	<!-- Terminal.js -->
 	<script type="text/javascript" src="terminal.js"></script>
